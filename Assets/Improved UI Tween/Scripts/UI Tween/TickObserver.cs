@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class TickObserver : MonoBehaviour
 {
-    private static TickObserver instance;
+    public static TickObserver Instance 
+    { 
+        get 
+        { 
+            if (instance == null)
+            {
+                GameObject tickOb = new GameObject("Tick Observer");
+                instance = tickOb.AddComponent<TickObserver>();
+            }
 
-    public static TickObserver Instance { get { return instance; } }
+            return instance; 
+        } 
+    }
+    private static TickObserver instance;
 
     private List<IFrameTicker> subscribers = new List<IFrameTicker>();
 
@@ -26,9 +39,19 @@ public class TickObserver : MonoBehaviour
         instance = this;
     }
 
+    private bool sleep = true;
+
+    private IEnumerator Start()
+    {
+        // wait two frames, doesnt messup the callbacks
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        sleep = false;
+    }
+
     private void Update()
     {
-        if (subscribers.Count == 0)
+        if (subscribers.Count == 0 || sleep)
             return;
         
         for (int index = 0; index < subscribers.Count; index++)
