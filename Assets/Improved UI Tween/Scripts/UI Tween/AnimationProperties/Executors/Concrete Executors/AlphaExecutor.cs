@@ -2,32 +2,33 @@
 using UnityEngine.UI;
 
 [System.Serializable]
-public class FadeExecutor : TweenExecutor
+public class AlphaExecutor : StateExecutor, CorePropertyComponent
 {
     #region Exposed to Editor
     public float StartValue
     {
         set
         {
-            if (value > 0f && value < 1f)
+            if (value >= 0f && value < 1f)
                 startValue = value;
         }
+        get { return startValue; }
     }
 
     public float EndValue
     {
         set
         {
-            if (value > 0f && value < 1f)
+            if (value > 0f && value <= 1f)
                 endValue = value;
         }
+        get { return endValue; }
     }
 
-    public bool OverrideChilds;
+    public bool OverrideChilds = false;
     #endregion
-
-    private float startValue;
-    private float endValue;
+    [SerializeField] [HideInInspector] private float startValue = 0f;
+    [SerializeField] [HideInInspector] private float endValue = 1f;
 
     [HideInInspector]
     private float initialPoint;
@@ -36,31 +37,37 @@ public class FadeExecutor : TweenExecutor
     [HideInInspector]
     private CoreProperty coreProperty;
 
+    #region CorePropertyComponent Implementation
     public virtual void Initialize(CoreProperty coreProperty)
     {
         // Initializer Guard
         if (coreProperty == null)
+        {
+            Debug.LogWarning("You Inserted a null CoreProperty! Fade will not play");
             return;
-        else
-            Debug.Log("You Inserted a null CoreProperty! Fade will not play");
+        }
 
         this.coreProperty = coreProperty;
         SetFadeValues(coreProperty.IsOpened());
     }
+    #endregion
 
     private void SetFadeValues(bool isAnimationOpen)
     {
-        initialPoint = (isAnimationOpen) ? startValue : endValue;
-        finalPoint = (isAnimationOpen) ? endValue : startValue;
+        initialPoint = (!isAnimationOpen) ? startValue : endValue;
+        finalPoint = (!isAnimationOpen) ? endValue : startValue;
     }
 
-    public virtual void ExecuteTween(RectTransform animatedRect)
+    #region TweenExecutor Implementation
+    public override void ExecuteTween(RectTransform animatedRect)
     {
         if (coreProperty == null)
             return;
-        
-        ApplyProperty(animatedRect.transform);
+
+        if (isExecutorEnabled())
+            ApplyProperty(animatedRect.transform);
     }
+    #endregion
 
     private void ApplyProperty(Transform alphaTr)
     {
@@ -73,7 +80,7 @@ public class FadeExecutor : TweenExecutor
 
     private void ApplyToChild(Transform alphaTr)
     {
-        // better not using for each here, lot of ms lost if the scene is huge...
+        // better not using for each here, lot of ms lost if the tranform hierarchy is huge...
         for (int i = 0; i < alphaTr.childCount; i++)
         {
             // lets hope Unity uses some array indexing, hope to save some ms
@@ -97,7 +104,7 @@ public class FadeExecutor : TweenExecutor
 
         MaskableGraphic GraphicElement = alphaTr.GetComponent<MaskableGraphic>();
         Color objectColor = GraphicElement.color;
-        objectColor.a = Mathf.Abs(initialPoint + (finalPoint - initialPoint) * coreProperty.Percentage);
+        objectColor.a = Mathf.Abs(initialPoint + (finalPoint - initialPoint) * coreProperty.ExactPercentage);
         GraphicElement.color = objectColor;
     }
 }
