@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 public class AnimationGroup : MonoBehaviour
 {
-
     private enum TriggerOptions
     {
         ON_START,
-        FROM_CODE
-    };
+        FROM_CODE}
+
+    ;
 
     [SerializeField] private TriggerOptions CurrentTriggerOption = TriggerOptions.FROM_CODE;
 
@@ -26,15 +26,16 @@ public class AnimationGroup : MonoBehaviour
     private Action callback;
     private AnimationGroupCaller AnimationCaller = new AnimationGroupCaller();
 
-    void Start()
+    private void Start()
     {
+        //yield return new WaitForEndOfFrame();
         if (CurrentTriggerOption.Equals(TriggerOptions.ON_START))
             TriggerAnimations();
     }
 
     public void TriggerAnimations()
     {
-        if (AnimationCaller.IsIdleState())
+        if (AnimationCaller.IsIdle())
         {
             callback = null;
             AnimationCaller.StartAnimation();
@@ -43,16 +44,11 @@ public class AnimationGroup : MonoBehaviour
 
     public void TriggerAnimations(Action callback)
     {
-        if (AnimationCaller.IsIdleState())
+        if (AnimationCaller.IsIdle())
         {
-            AnimationCaller.StartAnimation();
             this.callback = callback;
+            AnimationCaller.StartAnimation();
         }
-    }
-
-    public float GetTotalTimeAnimation()
-    {
-        return Group.Count * DelayBetweenCalls;
     }
 
     void Update()
@@ -62,7 +58,9 @@ public class AnimationGroup : MonoBehaviour
 
     private void EndAnimationEvent()
     {
-        ReverseAnimationOrder();
+        if (!PreserveExecutionOrder)
+            ReverseAnimationOrder();
+        
         EndEvent.Invoke();
 
         if (callback != null)

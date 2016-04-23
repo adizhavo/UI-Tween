@@ -10,29 +10,24 @@ public struct AnimationCall
         PAUSE
     };
 
-    public EasyTween Animation;
+    public Tween Animation;
     public Actions ActionOnEnd;
 
     public void PlayAnimation()
     {
-        Animation.OpenCloseObjectAnimation();
+        Animation.Animate();
     }
 
-    public float GetAnimationLength()
+    public float GetLength()
     {
-        return Animation.GetAnimationDuration();
+        return Animation.Length();
     }
 
     public void ExecuteAction(AnimationGroupCaller caller)
     {
         if (ActionOnEnd.Equals(Actions.PAUSE))
         {
-            PauseAction(caller);
+            caller.PauseAnimation();
         }
-    }
-
-    private void PauseAction(AnimationGroupCaller caller)
-    {
-        caller.PauseAnimation();
     }
 }

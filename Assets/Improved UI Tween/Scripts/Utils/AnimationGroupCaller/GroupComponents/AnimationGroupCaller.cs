@@ -20,7 +20,7 @@ public class AnimationGroupCaller
     private int counter = 0;
     private float waitSeconds = 0f;
 
-    public bool IsIdleState()
+    public bool IsIdle()
     {
         return CurrentTriggerState.Equals(TriggerState.IDLE);
     }
@@ -68,7 +68,7 @@ public class AnimationGroupCaller
 
     private void AnimateThisFrame(List<AnimationCall> Animations, float DelayBetweenCalls, bool WaitAnimationTime, Action EndCallback)
     {
-        float timeWait = (WaitAnimationTime && counter > 0) ? DelayBetweenCalls + Animations[counter - 1].GetAnimationLength() : DelayBetweenCalls;
+        float timeWait = (WaitAnimationTime && counter > 0) ? DelayBetweenCalls + Animations[counter - 1].GetLength() : DelayBetweenCalls;
         if (waitSeconds < timeWait)
         {
             waitSeconds += Time.unscaledDeltaTime;
@@ -77,7 +77,7 @@ public class AnimationGroupCaller
         else if (counter < Animations.Count)
         {
             CheckCallerState();
-            Animate(Animations);
+            Animate(Animations[counter]);
             return;
         }
         IterationOutro(EndCallback);
@@ -89,12 +89,12 @@ public class AnimationGroupCaller
             CurrentTriggerState = TriggerState.IDLE;
     }
 
-    private void Animate(List<AnimationCall> Animations)
+    private void Animate(AnimationCall Animations)
     {
-        Animations[counter].PlayAnimation();
-        Animations[counter].ExecuteAction(this);
+        Animations.PlayAnimation();
+        Animations.ExecuteAction(this);
 
-        waitSeconds = 0;
+        waitSeconds = 0f;
         counter++;
     }
 
