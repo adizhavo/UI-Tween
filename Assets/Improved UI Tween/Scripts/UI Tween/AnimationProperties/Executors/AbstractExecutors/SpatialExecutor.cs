@@ -2,11 +2,12 @@
 using UnityEngine;
 
 [Serializable]
-public abstract class SpatialExecutor : StateExecutor, CorePropertyComponent
+public abstract class SpatialExecutor : StateExecutor, CorePropertyReader
 {
     #region Exposed to Editor
     public Vector3 StartVector;
     public Vector3 EndVector;
+
     public AnimationCurve EaseIn
     {
         set
@@ -34,6 +35,7 @@ public abstract class SpatialExecutor : StateExecutor, CorePropertyComponent
 
     [SerializeField] [HideInInspector] private CoreProperty coreProperty;
     [SerializeField] [HideInInspector] private EaseProperty easeProperty;
+
     [SerializeField] private AnimationCurve easeIn = new AnimationCurve();
     [SerializeField] private AnimationCurve easeOut = new AnimationCurve();
 

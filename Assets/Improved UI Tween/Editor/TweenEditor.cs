@@ -2,24 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CustomEditor(typeof(ReferencedFrom))] 
-public class ReferencedProxy : Editor
-{
-    public override void OnInspectorGUI ()
-    {
-        DrawDefaultInspector ();
-        EditorGUILayout.HelpBox ("This object is referenced from a Tween", MessageType.Info);
-    }
-}
-
-[CustomEditor(typeof(Tween))]
+[CustomEditor(typeof(UITween))]
 public class TweenEditor : Editor
 {
-    private Tween tweenScript;
+    private UITween tweenScript;
 
     private void OnEnable()
     {
-        tweenScript = (Tween)target;
+        tweenScript = (UITween)target;
     }
 
     public override void OnInspectorGUI()
@@ -185,15 +175,18 @@ public class TweenEditor : Editor
     private void RenderCallbackEventProperty()
     {
         RenderSeparator();
-        EditorGUILayout.LabelField("Percentage (0f-1f) when callback is fired during the animation");
+        string labelInfo = "Percentage (0f-1f) when callback is fired during the animation";
+        EditorGUILayout.LabelField(labelInfo);
         EditorGUILayout.Separator();
 
-        EditorGUILayout.LabelField("Left point (" + tweenScript.EventProperty.IntroEventPercentage.x + ") = \"StartIntro\" --- Right point (" + tweenScript.EventProperty.IntroEventPercentage.y + ") = \"EndIntro\"");
+        string introEventInfo = string.Format("Left point ({0}) \"StartIntro\" --- Right Point ({1}) \"EndIntro\"", tweenScript.EventProperty.IntroEventPercentage.x, tweenScript.EventProperty.IntroEventPercentage.y);
+        EditorGUILayout.LabelField(introEventInfo);
         Vector2 IntroEventPercentage = tweenScript.EventProperty.IntroEventPercentage;
         EditorGUILayout.MinMaxSlider(ref IntroEventPercentage.x, ref IntroEventPercentage.y, 0f, 1f);
         tweenScript.EventProperty.IntroEventPercentage = IntroEventPercentage;
 
-        EditorGUILayout.LabelField("Left point (" + tweenScript.EventProperty.ExitEventPercentage.x + ") = \"StartExit\" --- Right point (" + tweenScript.EventProperty.ExitEventPercentage.y + ") = \"EndExit\"");
+        string exitEventInfo = string.Format("Left point ({0}) \"StartExit\" --- Right Point ({1}) \"EndExit\"", tweenScript.EventProperty.IntroEventPercentage.x, tweenScript.EventProperty.IntroEventPercentage.y);
+        EditorGUILayout.LabelField(exitEventInfo);
         Vector2 ExitEventPercentage = tweenScript.EventProperty.ExitEventPercentage;
         EditorGUILayout.MinMaxSlider(ref ExitEventPercentage.x, ref ExitEventPercentage.y, 0f, 1f);
         tweenScript.EventProperty.ExitEventPercentage = ExitEventPercentage;
@@ -213,7 +206,7 @@ public class TweenEditor : Editor
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField(stateMesssage);
         Rect enumArea = GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true));
-        tweenScript.CoreProperty.FinalAction = (CoreProperty.EndAction)EditorGUI.EnumPopup(enumArea, string.Empty, tweenScript.CoreProperty.FinalAction);
+        tweenScript.CoreProperty.FinalAction = (CoreProperty.FinalExit)EditorGUI.EnumPopup(enumArea, string.Empty, tweenScript.CoreProperty.FinalAction);
         EditorGUILayout.EndHorizontal();
     }
 
@@ -379,5 +372,15 @@ public class TweenEditor : Editor
         {
             SetAlphaValue(child, alphaValue);
         }
+    }
+}
+
+[CustomEditor(typeof(ReferencedFrom))] 
+public class ReferencedProxy : Editor
+{
+    public override void OnInspectorGUI ()
+    {
+        DrawDefaultInspector ();
+        EditorGUILayout.HelpBox ("This object is referenced from a Tween", MessageType.Info);
     }
 }

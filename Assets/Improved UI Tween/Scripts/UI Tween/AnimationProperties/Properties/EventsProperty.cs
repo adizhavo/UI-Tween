@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [System.Serializable]
-public class EventProperty : CorePropertyComponent
+public class EventProperty : CorePropertyReader
 {
     public enum CallbackType
     {
@@ -13,7 +13,6 @@ public class EventProperty : CorePropertyComponent
     }
 
     #region Exposed to Editor
-    [SerializeField] private List<Callback> callbacks = new List<Callback>();
 
     public Vector2 IntroEventPercentage
     {
@@ -33,15 +32,13 @@ public class EventProperty : CorePropertyComponent
         get{ return exitChecker.EventPercentage; }
     }
     #endregion
+    
+    [SerializeField] private PercentageChecker introChecker = new PercentageChecker(CallbackType.StartIntro, CallbackType.EndIntro);
+    [SerializeField] private PercentageChecker exitChecker = new PercentageChecker(CallbackType.StartExit, CallbackType.EndExit);
 
-    [SerializeField]
-    private EventTimeChecker introChecker = new EventTimeChecker(CallbackType.StartIntro, CallbackType.EndIntro);
+    [SerializeField] private List<Callback> callbacks = new List<Callback>();
 
-    [SerializeField] 
-    private EventTimeChecker exitChecker = new EventTimeChecker(CallbackType.StartExit, CallbackType.EndExit);
-
-    [HideInInspector]
-    private CoreProperty coreProperty;
+    [HideInInspector] private CoreProperty coreProperty;
 
     public void Initialize(CoreProperty coreProperty)
     {
@@ -69,7 +66,7 @@ public class EventProperty : CorePropertyComponent
             return;
         }
 
-        EventTimeChecker currentChecker = (!coreProperty.IsOpened()) ? introChecker : exitChecker;
+        PercentageChecker currentChecker = !coreProperty.IsOpened() ? introChecker : exitChecker;
         CallbackType? type = CheckEventPercentage(currentChecker);
 
         if (type.HasValue)
@@ -86,7 +83,7 @@ public class EventProperty : CorePropertyComponent
             return;
         }
 
-        EventTimeChecker currentChecker = (!coreProperty.IsOpened()) ? introChecker : exitChecker;
+        PercentageChecker currentChecker = !coreProperty.IsOpened() ? introChecker : exitChecker;
         ResetEvent(currentChecker);
     }
 
@@ -97,7 +94,7 @@ public class EventProperty : CorePropertyComponent
                 cllb.Action();
     }
 
-    private CallbackType? CheckEventPercentage(EventTimeChecker eventChecker)
+    private CallbackType? CheckEventPercentage(PercentageChecker eventChecker)
     {
         if (eventChecker != null)
         {
@@ -107,7 +104,7 @@ public class EventProperty : CorePropertyComponent
         return null;
     }
 
-    private void ResetEvent(EventTimeChecker eventChecker)
+    private void ResetEvent(PercentageChecker eventChecker)
     {
         if (eventChecker != null)
         {

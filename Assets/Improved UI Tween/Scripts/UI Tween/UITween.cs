@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class Tween : MonoBehaviour, IFrameTicker
+public class UITween : MonoBehaviour, IFrameTicker
 {
     //-------------------------Exposed to Editor
     //----
@@ -114,7 +114,7 @@ public class Tween : MonoBehaviour, IFrameTicker
         InitializeProp(eventProperty);
     }
 
-    protected void InitializeProp(CorePropertyComponent prop)
+    protected void InitializeProp(CorePropertyReader prop)
     {
         if (coreProperty == null || prop != null)
             prop.Initialize(coreProperty);

@@ -25,13 +25,13 @@ public class TickObserver : MonoBehaviour
     public void Register(IFrameTicker subscriber)
     {
         if (subscriber != null)
-            this.subscribers.Add(subscriber);
+            subscribers.Add(subscriber);
     }
 
     public void UnRegister(IFrameTicker subscriber)
     {
         if (subscriber != null)
-            this.subscribers.Remove(subscriber);
+            subscribers.Remove(subscriber);
     }
 
     private void Awake()
@@ -56,11 +56,11 @@ public class TickObserver : MonoBehaviour
         
         for (int index = 0; index < subscribers.Count; index++)
         {
-            float deltaTime = (subscribers[index].IsUnscaledTicker()) ? 
+            float preferedDeltaTime = subscribers[index].IsUnscaledTicker() ? 
                     Time.unscaledDeltaTime : 
                     Time.deltaTime;
                 
-            subscribers[index].Tick(deltaTime);
+            subscribers[index].Tick(preferedDeltaTime);
         }
     }
 }

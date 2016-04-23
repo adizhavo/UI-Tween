@@ -12,7 +12,7 @@ public class TweenInitializer : MonoBehaviour
     };
 
     [SerializeField] private TweenSetupStates CurrentState;
-    private Tween tweenScript;
+    private UITween tweenScript;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class TweenInitializer : MonoBehaviour
     {
         if (tweenScript == null)
         {
-            tweenScript = GetComponent<Tween>();
+            tweenScript = GetComponent<UITween>();
             if (tweenScript == null)
             {
                 Debug.LogError("Easy Tween 2.0 not referenced");

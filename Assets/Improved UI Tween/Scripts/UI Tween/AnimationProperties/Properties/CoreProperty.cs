@@ -9,7 +9,7 @@ public class CoreProperty
         Open
     }
 
-    public enum EndAction
+    public enum FinalExit
     {
         Disable,
         Destroy,
@@ -20,7 +20,7 @@ public class CoreProperty
     public bool LockState;
     // This is too exposed to other classes, because we want to expose to the editor for the setup
     public CoreState AnimationState;
-    public EndAction FinalAction;
+    public FinalExit FinalAction;
     #endregion
     // we add 10% for the callback, can be adjusted on the editor
     public float CallbackPercentage { get { return animationPercentage + 0.1f; } }
@@ -77,11 +77,11 @@ public class CoreProperty
         if (!IsOpened())
             return;
 
-        if (FinalAction.Equals(EndAction.Destroy))
+        if (FinalAction.Equals(FinalExit.Destroy))
         {
             GameObject.Destroy( animGame );
         }
-        else if (FinalAction.Equals(EndAction.Disable))
+        else if (FinalAction.Equals(FinalExit.Disable))
         {
             animGame.SetActive(false);
         }
@@ -92,6 +92,6 @@ public class CoreProperty
         if (LockState)
             return;
         
-        AnimationState = (AnimationState.Equals(CoreState.Open)) ? CoreState.Close : CoreState.Open;
+        AnimationState = AnimationState.Equals(CoreState.Open) ? CoreState.Close : CoreState.Open;
     } 
 }

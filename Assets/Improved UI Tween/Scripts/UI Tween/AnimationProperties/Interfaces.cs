@@ -6,7 +6,7 @@ public interface IFrameTicker
     bool IsUnscaledTicker();
 }
 
-public interface CorePropertyComponent
+public interface CorePropertyReader
 {
     void Initialize(CoreProperty coreProperty);
 }

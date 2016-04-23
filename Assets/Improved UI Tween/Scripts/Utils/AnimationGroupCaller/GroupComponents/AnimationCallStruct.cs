@@ -10,7 +10,7 @@ public struct AnimationCall
         PAUSE
     };
 
-    public Tween Animation;
+    public UITween Animation;
     public Actions ActionOnEnd;
 
     public void PlayAnimation()

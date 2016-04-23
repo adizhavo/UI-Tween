@@ -2,14 +2,14 @@
 using UnityEngine;
 
 [Serializable]
-public class EventTimeChecker
+public class PercentageChecker
 {
     private CallBackTypeState startTypeState;
     private CallBackTypeState endTypeState;
 
     public Vector2 EventPercentage = new Vector2(0f, 1f);
 
-    public EventTimeChecker(EventProperty.CallbackType StartType, EventProperty.CallbackType EndType)
+    public PercentageChecker(EventProperty.CallbackType StartType, EventProperty.CallbackType EndType)
     {
         this.startTypeState = new CallBackTypeState(StartType);
         this.endTypeState = new CallBackTypeState(EndType);
@@ -26,15 +26,19 @@ public class EventTimeChecker
         ClampValues(ref EventPercentage.x);
         ClampValues(ref EventPercentage.y);
 
-        float minVal = (EventPercentage.y < EventPercentage.x) ? EventPercentage.y : EventPercentage.x;
-        float maxVal = (EventPercentage.x < EventPercentage.y) ? EventPercentage.y : EventPercentage.x;
+        float minVal = EventPercentage.y < EventPercentage.x ? EventPercentage.y : EventPercentage.x;
+        float maxVal = EventPercentage.x < EventPercentage.y ? EventPercentage.y : EventPercentage.x;
 
+        return EventToFire(percentage, minVal, maxVal);
+    }
+
+    private EventProperty.CallbackType? EventToFire(float percentage, float minVal, float maxVal)
+    {
         if (percentage >= minVal && !startTypeState.isFired)
         {
             startTypeState.isFired = true;
             return startTypeState.type;
         }
-
         if (percentage >= maxVal && !endTypeState.isFired)
         {
             endTypeState.isFired = true;

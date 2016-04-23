@@ -10,9 +10,8 @@ public class AnimationGroup : MonoBehaviour
     private enum TriggerOptions
     {
         ON_START,
-        FROM_CODE}
-
-    ;
+        FROM_CODE
+    }
 
     [SerializeField] private TriggerOptions CurrentTriggerOption = TriggerOptions.FROM_CODE;
 

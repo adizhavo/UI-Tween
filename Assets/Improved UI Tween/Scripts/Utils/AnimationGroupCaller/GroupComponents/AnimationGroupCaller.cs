@@ -68,7 +68,7 @@ public class AnimationGroupCaller
 
     private void AnimateThisFrame(List<AnimationCall> Animations, float DelayBetweenCalls, bool WaitAnimationTime, Action EndCallback)
     {
-        float timeWait = (WaitAnimationTime && counter > 0) ? DelayBetweenCalls + Animations[counter - 1].GetLength() : DelayBetweenCalls;
+        float timeWait = WaitAnimationTime && counter > 0 ? DelayBetweenCalls + Animations[counter - 1].GetLength() : DelayBetweenCalls;
         if (waitSeconds < timeWait)
         {
             waitSeconds += Time.unscaledDeltaTime;
