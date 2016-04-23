@@ -19,7 +19,7 @@ public class EventTimeChecker
     {
         if (eventProperty == null)
         {
-            Debug.Log("EventProperty is null, maybe something went wrong at the initialization? Event will not be fired");
+            Debug.LogWarning("EventProperty is null, maybe something went wrong at the initialization? Event will not be fired");
             return null;
         }
 
@@ -29,15 +29,16 @@ public class EventTimeChecker
         float minVal = (EventPercentage.y < EventPercentage.x) ? EventPercentage.y : EventPercentage.x;
         float maxVal = (EventPercentage.x < EventPercentage.y) ? EventPercentage.y : EventPercentage.x;
 
+        if (percentage >= minVal && !startTypeState.isFired)
+        {
+            startTypeState.isFired = true;
+            return startTypeState.type;
+        }
+
         if (percentage >= maxVal && !endTypeState.isFired)
         {
             endTypeState.isFired = true;
             return endTypeState.type;
-        }
-        else if (percentage >= minVal && !startTypeState.isFired)
-        {
-            startTypeState.isFired = true;
-            return startTypeState.type;
         }
 
         return null;
