@@ -27,16 +27,16 @@ public struct EaseProperty
 
     public EaseProperty(Vector3 StartValues, Vector3 EndValues, AnimationCurve EaseIn, AnimationCurve EaseOut, CoreProperty animationCore)
     {
-        if (EaseIn != null || EaseOut != null)
+        if (EaseIn == null || EaseOut == null)
         {
-            Debug.Log("EasinIn or EaseOut are null, please check your request.");
+            Debug.LogWarning("EasinIn or EaseOut are null, please check your request.");
             return;
         }
         
         bool isAnimationOpen = animationCore.IsOpened();
 
-        initialPoint = (isAnimationOpen) ? StartValues : EndValues;
-        finalPoint = (isAnimationOpen) ? EndValues : StartValues;
-        ease = (isAnimationOpen) ? EaseIn : EaseOut;
+        initialPoint = (!isAnimationOpen) ? StartValues : EndValues;
+        finalPoint = (!isAnimationOpen) ? EndValues : StartValues;
+        ease = (!isAnimationOpen) ? EaseIn : EaseOut;
     }
 }

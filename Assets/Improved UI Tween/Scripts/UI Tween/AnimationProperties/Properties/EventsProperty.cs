@@ -45,6 +45,13 @@ public class EventProperty : CorePropertyComponent
 
     public void Initialize(CoreProperty coreProperty)
     {
+        // Initializer Guard
+        if (coreProperty == null)
+        {
+            Debug.LogWarning("You Inserted a null CoreProperty! Property not correctly initialized");
+            return;
+        }
+
         this.coreProperty = coreProperty;
     }
 
@@ -56,7 +63,13 @@ public class EventProperty : CorePropertyComponent
 
     public void CheckTweenEvents()
     {
-        EventTimeChecker currentChecker = (coreProperty.IsOpened()) ? introChecker : exitChecker;
+        if (coreProperty == null)
+        {
+            Debug.LogWarning("You Inserted a null CoreProperty! Callbacks will not be executed.");
+            return;
+        }
+
+        EventTimeChecker currentChecker = (!coreProperty.IsOpened()) ? introChecker : exitChecker;
         CallbackType? type = CheckEventPercentage(currentChecker);
 
         if (type.HasValue)
@@ -67,7 +80,13 @@ public class EventProperty : CorePropertyComponent
 
     public void ResetEventChecker()
     {
-        EventTimeChecker currentChecker = (coreProperty.IsOpened()) ? introChecker : exitChecker;
+        if (coreProperty == null)
+        {
+            Debug.LogWarning("You Inserted a null CoreProperty! Callbacks will not be resetted.");
+            return;
+        }
+
+        EventTimeChecker currentChecker = (!coreProperty.IsOpened()) ? introChecker : exitChecker;
         ResetEvent(currentChecker);
     }
 
@@ -82,7 +101,7 @@ public class EventProperty : CorePropertyComponent
     {
         if (eventChecker != null)
         {
-            return eventChecker.CheckEvent(this, coreProperty.Percentage);
+            return eventChecker.CheckEvent(this, coreProperty.CallbackPercentage);
         }
 
         return null;

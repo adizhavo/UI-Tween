@@ -9,23 +9,34 @@ public class CoreProperty
         Open
     }
 
+    public enum EndAction
+    {
+        Disable,
+        Destroy,
+        Nothing
+    }
+
     #region Exposed to Editor
     public bool LockState;
     // This is too exposed to other classes, because we want to expose to the editor for the setup
     public CoreState AnimationState;
+    public EndAction FinalAction;
     #endregion
+    // we add 10% for the callback, can be adjusted on the editor
+    public float CallbackPercentage { get { return animationPercentage + 0.1f; } }
+    public float ExactPercentage { get { return animationPercentage; } }
 
-    public float Percentage { get { return animationPercentage; } }
+    [HideInInspector] private float animationPercentage = 0f;
+    [HideInInspector] private bool isAnimating = false;
 
-    [HideInInspector]
-    private float animationPercentage;
-    [HideInInspector]
-    private bool isAnimating = false;
-
-    public void Start()
+    public void Start(GameObject animGame)
     {
-        ChangeState();
+        if (isAnimating)
+            return;
+
+        isAnimating = true;
         animationPercentage = 0f;
+        animGame.SetActive(true);
     }
 
     public void AddPercentage(float addition)
@@ -51,15 +62,33 @@ public class CoreProperty
         return animationPercentage >= 1f;
     }
 
-    public void PostProcess()
+    public void PostProcess(GameObject animGame)
     {
+        if (isAnimating && !HasReachedEnd())
+            return;
+
+        isAnimating = false;
+        ProcessFinalAction(animGame);
         ChangeState();
+    }
+
+    protected virtual void ProcessFinalAction(GameObject animGame)
+    {
+        if (!IsOpened())
+            return;
+
+        if (FinalAction.Equals(EndAction.Destroy))
+        {
+            GameObject.Destroy( animGame );
+        }
+        else if (FinalAction.Equals(EndAction.Disable))
+        {
+            animGame.SetActive(false);
+        }
     }
 
     private void ChangeState()
     {
-        isAnimating = !isAnimating;
-
         if (LockState)
             return;
         
