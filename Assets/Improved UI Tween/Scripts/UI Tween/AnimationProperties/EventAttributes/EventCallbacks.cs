@@ -15,7 +15,7 @@ public abstract class Callback : MonoBehaviour
 public class TweenCallbackEvent : Callback
 {
     #region Exposed to Editor
-    public UnityAction callbackAction;
+    public UnityEvent callbackAction;
     #endregion
 
     public override void Action()
