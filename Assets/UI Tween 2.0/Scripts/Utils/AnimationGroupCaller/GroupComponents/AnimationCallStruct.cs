@@ -8,9 +8,10 @@ public struct AnimationCall
     {
         NOTHING,
         PAUSE
-    };
+    }
 
     public UITween Animation;
+    public GroupCallback Callback;
     public Actions ActionOnEnd;
 
     public void PlayAnimation()
@@ -25,6 +26,9 @@ public struct AnimationCall
 
     public void ExecuteAction(AnimationGroupCaller caller)
     {
+        if (Callback != null)
+            Callback.Action();
+
         if (ActionOnEnd.Equals(Actions.PAUSE))
         {
             caller.PauseAnimation();
