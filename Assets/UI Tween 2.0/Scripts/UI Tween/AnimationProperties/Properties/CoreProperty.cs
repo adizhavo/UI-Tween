@@ -22,9 +22,7 @@ public class CoreProperty
     public CoreState AnimationState;
     public FinalExit FinalAction;
     #endregion
-    // we add 10% for the callback, can be adjusted on the editor
-    public float CallbackPercentage { get { return animationPercentage + 0.1f; } }
-    public float ExactPercentage { get { return animationPercentage; } }
+    public float Percentage { get { return Mathf.Clamp01(animationPercentage); } }
 
     [HideInInspector] private float animationPercentage = 0f;
     [HideInInspector] private bool isAnimating = false;
@@ -42,9 +40,6 @@ public class CoreProperty
     public void AddPercentage(float addition)
     {
         animationPercentage += addition;
-
-        if (animationPercentage > 1f)
-            animationPercentage = 1f;
     }
 
     public bool IsOpened()

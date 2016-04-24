@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 134347749}
   - 114: {fileID: 134347748}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Movement 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 134347747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fa75346f6ad41a29e9081d8d13dde6, type: 3}
+  m_Script: {fileID: 11500000, guid: 954e8164a9d1c4aa29e5b0e019dbdd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatedRect: {fileID: 1882276269}
@@ -121,40 +121,24 @@ MonoBehaviour:
     duration: 1
     UnscaledTime: 1
   eventProperty:
-    callbacks: []
     introChecker:
       EventPercentage: {x: 0, y: 1}
     exitChecker:
       EventPercentage: {x: 0, y: 1}
-  Alpha:
+    callbacks: []
+  alpha:
     currentState: 1
     OverrideChilds: 0
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
     startValue: 0
     endValue: 1
-  Scale:
-    currentState: 1
-    StartVector: {x: 0, y: 0, z: 0}
-    EndVector: {x: 0, y: 0, z: 0}
-    coreProperty:
-      LockState: 0
-      AnimationState: 0
-      FinalAction: 0
-    easeIn:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    easeOut:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  Position:
+  scale:
     currentState: 0
-    StartVector: {x: 100, y: 100, z: 0}
-    EndVector: {x: 0, y: 100, z: 0}
+    StartVector: {x: 1, y: 1, z: 1}
+    EndVector: {x: 1.5, y: 1.5, z: 1.5}
     coreProperty:
       LockState: 0
       AnimationState: 0
@@ -164,34 +148,74 @@ MonoBehaviour:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+        inSlope: -13.651333
+        outSlope: -13.651333
+        tangentMode: 0
+      - time: 0.12492168
+        value: -0.791855
+        inSlope: 0.5289912
+        outSlope: 0.5289912
+        tangentMode: 0
+      - time: 0.4907872
+        value: 0.6850428
+        inSlope: 0.011628554
+        outSlope: 0.011628554
+        tangentMode: 0
+      - time: 0.79418796
+        value: -0.16313276
+        inSlope: -1.3665572
+        outSlope: -1.3665572
+        tangentMode: 0
+      - time: 0.9837838
+        value: 0.0153849125
+        inSlope: 3.0719268
+        outSlope: 3.0719268
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     easeOut:
       serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Rotation:
+  position:
+    currentState: 0
+    StartVector: {x: 100, y: 50, z: 0}
+    EndVector: {x: -100, y: 50, z: 0}
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
+    easeIn:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.49631533
+        value: 0.49447307
+        inSlope: 3.7743344
+        outSlope: 3.7743344
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    easeOut:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  rotation:
     currentState: 1
     StartVector: {x: 0, y: 0, z: 0}
     EndVector: {x: 0, y: 0, z: 0}
@@ -386,7 +410,7 @@ GameObject:
   - 4: {fileID: 450862008}
   - 114: {fileID: 450862009}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Movement 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +436,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450862007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fa75346f6ad41a29e9081d8d13dde6, type: 3}
+  m_Script: {fileID: 11500000, guid: 954e8164a9d1c4aa29e5b0e019dbdd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatedRect: {fileID: 1882276269}
@@ -421,43 +445,27 @@ MonoBehaviour:
     AnimationState: 0
     FinalAction: 0
   timeProperty:
-    duration: 0.1
+    duration: 1
     UnscaledTime: 1
   eventProperty:
-    callbacks: []
     introChecker:
       EventPercentage: {x: 0, y: 1}
     exitChecker:
       EventPercentage: {x: 0, y: 1}
-  Alpha:
-    currentState: 1
+    callbacks: []
+  alpha:
+    currentState: 0
     OverrideChilds: 0
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
     startValue: 0
     endValue: 1
-  Scale:
-    currentState: 1
-    StartVector: {x: 0, y: 0, z: 0}
-    EndVector: {x: 0, y: 0, z: 0}
-    coreProperty:
-      LockState: 0
-      AnimationState: 0
-      FinalAction: 0
-    easeIn:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    easeOut:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  Position:
+  scale:
     currentState: 0
-    StartVector: {x: 0, y: 0, z: 0}
-    EndVector: {x: 100, y: 0, z: 0}
+    StartVector: {x: 1, y: 1, z: 1}
+    EndVector: {x: 1.5, y: 1.5, z: 1.5}
     coreProperty:
       LockState: 0
       AnimationState: 0
@@ -467,34 +475,69 @@ MonoBehaviour:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 0.36630607
+        value: 1.0732017
+        inSlope: 0.5289912
+        outSlope: 0.5289912
+        tangentMode: 0
+      - time: 0.6824975
+        value: -0.079856694
+        inSlope: -3.1328201
+        outSlope: -3.1328201
+        tangentMode: 0
+      - time: 0.9837838
+        value: 0.0153849125
+        inSlope: 3.0719268
+        outSlope: 3.0719268
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     easeOut:
       serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Rotation:
+  position:
+    currentState: 0
+    StartVector: {x: -100, y: -50, z: 0}
+    EndVector: {x: 100, y: -50, z: 0}
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
+    easeIn:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 0.51128465
+        value: 1.1608793
+        inSlope: 0.5289912
+        outSlope: 0.5289912
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: -1.2307696
+        outSlope: -1.2307696
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    easeOut:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  rotation:
     currentState: 1
     StartVector: {x: 0, y: 0, z: 0}
     EndVector: {x: 0, y: 0, z: 0}
@@ -524,7 +567,7 @@ GameObject:
   - 4: {fileID: 1253054756}
   - 114: {fileID: 1253054755}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Movement 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +581,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253054754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fa75346f6ad41a29e9081d8d13dde6, type: 3}
+  m_Script: {fileID: 11500000, guid: 954e8164a9d1c4aa29e5b0e019dbdd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatedRect: {fileID: 1882276269}
@@ -547,20 +590,24 @@ MonoBehaviour:
     AnimationState: 0
     FinalAction: 0
   timeProperty:
-    duration: 1
+    duration: 0.2
     UnscaledTime: 1
   eventProperty:
-    callbacks: []
     introChecker:
       EventPercentage: {x: 0, y: 1}
     exitChecker:
       EventPercentage: {x: 0, y: 1}
-  Alpha:
+    callbacks: []
+  alpha:
     currentState: 1
     OverrideChilds: 0
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
     startValue: 0
     endValue: 1
-  Scale:
+  scale:
     currentState: 1
     StartVector: {x: 0, y: 0, z: 0}
     EndVector: {x: 0, y: 0, z: 0}
@@ -580,10 +627,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Position:
+  position:
     currentState: 0
-    StartVector: {x: 0, y: 100, z: 0}
-    EndVector: {x: 0, y: 0, z: 0}
+    StartVector: {x: -100, y: 50, z: 0}
+    EndVector: {x: -100, y: -50, z: 0}
     coreProperty:
       LockState: 0
       AnimationState: 0
@@ -593,34 +640,24 @@ MonoBehaviour:
       m_Curve:
       - time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       - time: 1
         value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     easeOut:
       serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  Rotation:
+  rotation:
     currentState: 1
     StartVector: {x: 0, y: 0, z: 0}
     EndVector: {x: 0, y: 0, z: 0}
@@ -662,7 +699,7 @@ GameObject:
   - 4: {fileID: 1342460604}
   - 114: {fileID: 1342460603}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Movement 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1342460602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fa75346f6ad41a29e9081d8d13dde6, type: 3}
+  m_Script: {fileID: 11500000, guid: 954e8164a9d1c4aa29e5b0e019dbdd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatedRect: {fileID: 1882276269}
@@ -685,80 +722,24 @@ MonoBehaviour:
     AnimationState: 0
     FinalAction: 0
   timeProperty:
-    duration: 0.1
+    duration: 0.5
     UnscaledTime: 1
   eventProperty:
-    callbacks: []
     introChecker:
       EventPercentage: {x: 0, y: 1}
     exitChecker:
       EventPercentage: {x: 0, y: 1}
-  Alpha:
-    currentState: 1
-    OverrideChilds: 0
-    startValue: 0
-    endValue: 1
-  Scale:
-    currentState: 1
-    StartVector: {x: 0, y: 0, z: 0}
-    EndVector: {x: 0, y: 0, z: 0}
-    coreProperty:
-      LockState: 0
-      AnimationState: 0
-      FinalAction: 0
-    easeIn:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    easeOut:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  Position:
+    callbacks: []
+  alpha:
     currentState: 0
-    StartVector: {x: 100, y: 0, z: 0}
-    EndVector: {x: 100, y: 100, z: 0}
+    OverrideChilds: 0
     coreProperty:
       LockState: 0
       AnimationState: 0
       FinalAction: 0
-    easeIn:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    easeOut:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      - time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  Rotation:
+    startValue: 1
+    endValue: 0
+  scale:
     currentState: 1
     StartVector: {x: 0, y: 0, z: 0}
     EndVector: {x: 0, y: 0, z: 0}
@@ -769,6 +750,81 @@ MonoBehaviour:
     easeIn:
       serializedVersion: 2
       m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    easeOut:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  position:
+    currentState: 0
+    StartVector: {x: 100, y: -50, z: 0}
+    EndVector: {x: 100, y: 50, z: 0}
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
+    easeIn:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.51190597
+        value: 0.5178556
+        inSlope: 3.678527
+        outSlope: 3.678527
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    easeOut:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  rotation:
+    currentState: 0
+    StartVector: {x: 0, y: 0, z: 0}
+    EndVector: {x: 0, y: 0, z: 90}
+    coreProperty:
+      LockState: 0
+      AnimationState: 0
+      FinalAction: 0
+    easeIn:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - time: 0.4599333
+        value: 1.1788112
+        inSlope: 0.5289912
+        outSlope: 0.5289912
+        tangentMode: 0
+      - time: 0.73089606
+        value: 0.8230516
+        inSlope: -0.6520748
+        outSlope: -0.6520748
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 1.4482958
+        outSlope: 1.4482958
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -799,8 +855,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1396914769}
   - 114: {fileID: 1396914768}
+  - 114: {fileID: 1396914770}
   m_Layer: 0
-  m_Name: Animation
+  m_Name: Animation Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTriggerOption: 0
-  DelayBetweenCalls: 0.2
+  DelayBetweenCalls: 0.1
   CallWaitAnimationEnd: 1
   PreserveExecutionOrder: 1
   Group:
@@ -851,6 +908,20 @@ Transform:
   - {fileID: 1253054756}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1396914770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396914767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4441df2048f594a8c8a75c32d034dc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  tweenListen: {fileID: 1253054755}
+  groupCall: {fileID: 1396914768}
 --- !u!1 &1744408482
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +973,7 @@ GameObject:
   - 114: {fileID: 1882276270}
   - 114: {fileID: 1882276272}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Animated Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +993,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -100, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1882276270

@@ -98,7 +98,7 @@ public class EventProperty : CorePropertyReader
     {
         if (eventChecker != null)
         {
-            return eventChecker.CheckEvent(this, coreProperty.CallbackPercentage);
+            return eventChecker.CheckEvent(this, coreProperty.Percentage);
         }
 
         return null;

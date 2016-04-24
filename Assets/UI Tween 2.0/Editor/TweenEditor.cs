@@ -42,10 +42,10 @@ public class TweenEditor : Editor
         RenderAssignmentField();
         RenderAnimationProperty();
         RenderAnimationEndState("GameObject end animation action");
-        RenderAlphaExecutor(tweenScript.Alpha, "Start alpha value", "End alpha value", "Override child alpha? ", "Enable Alpha executor");
-        RenderExecutorEditor(tweenScript.Position, "Start Position", "End Position", "Enable Position Executor");
-        RenderExecutorEditor(tweenScript.Rotation, "Start Rotation", "End Rotation", "Enable Rotation Executor");
-        RenderExecutorEditor(tweenScript.Scale, "Start Scale", "End Scale", "Enable Scale Executor");
+        RenderAlphaExecutor(tweenScript.alpha, "Start alpha value", "End alpha value", "Override child alpha? ", "Enable Alpha executor");
+        RenderExecutorEditor(tweenScript.position, "Start Position", "End Position", "Enable Position Executor");
+        RenderExecutorEditor(tweenScript.rotation, "Start Rotation", "End Rotation", "Enable Rotation Executor");
+        RenderExecutorEditor(tweenScript.scale, "Start Scale", "End Scale", "Enable Scale Executor");
         RenderAnimationButtons();
         RenderCallbackEventProperty();
     }
@@ -291,59 +291,59 @@ public class TweenEditor : Editor
 
     private void GetInitialProperties()
     {
-        if (tweenScript.Scale.isExecutorEnabled())
-            tweenScript.Scale.StartVector = tweenScript.AnimatedRect.localScale;
+        if (tweenScript.scale.isExecutorEnabled())
+            tweenScript.scale.StartVector = tweenScript.AnimatedRect.localScale;
         
-        if (tweenScript.Position.isExecutorEnabled())
-            tweenScript.Position.StartVector = tweenScript.AnimatedRect.anchoredPosition;
+        if (tweenScript.position.isExecutorEnabled())
+            tweenScript.position.StartVector = tweenScript.AnimatedRect.anchoredPosition;
         
-        if (tweenScript.Rotation.isExecutorEnabled())
-            tweenScript.Rotation.StartVector = tweenScript.AnimatedRect.localEulerAngles;
+        if (tweenScript.rotation.isExecutorEnabled())
+            tweenScript.rotation.StartVector = tweenScript.AnimatedRect.localEulerAngles;
     }
 
     private void GetFinalProperties()
     {
-        if (tweenScript.Scale.isExecutorEnabled())
-            tweenScript.Scale.EndVector = tweenScript.AnimatedRect.localScale;
+        if (tweenScript.scale.isExecutorEnabled())
+            tweenScript.scale.EndVector = tweenScript.AnimatedRect.localScale;
         
-        if (tweenScript.Position.isExecutorEnabled())
-            tweenScript.Position.EndVector = tweenScript.AnimatedRect.anchoredPosition;
+        if (tweenScript.position.isExecutorEnabled())
+            tweenScript.position.EndVector = tweenScript.AnimatedRect.anchoredPosition;
         
-        if (tweenScript.Rotation.isExecutorEnabled())
-            tweenScript.Rotation.EndVector = tweenScript.AnimatedRect.localEulerAngles;
+        if (tweenScript.rotation.isExecutorEnabled())
+            tweenScript.rotation.EndVector = tweenScript.AnimatedRect.localEulerAngles;
     }
 
     private void SetInitialProperties()
     {
-        if (tweenScript.Scale.isExecutorEnabled())
-            tweenScript.AnimatedRect.localScale = tweenScript.Scale.StartVector;
+        if (tweenScript.scale.isExecutorEnabled())
+            tweenScript.AnimatedRect.localScale = tweenScript.scale.StartVector;
         
-        if (tweenScript.Position.isExecutorEnabled())
-            tweenScript.AnimatedRect.anchoredPosition = tweenScript.Position.StartVector;
+        if (tweenScript.position.isExecutorEnabled())
+            tweenScript.AnimatedRect.anchoredPosition = tweenScript.position.StartVector;
         
-        if (tweenScript.Rotation.isExecutorEnabled())
-            tweenScript.AnimatedRect.localEulerAngles = tweenScript.Rotation.StartVector;
+        if (tweenScript.rotation.isExecutorEnabled())
+            tweenScript.AnimatedRect.localEulerAngles = tweenScript.rotation.StartVector;
 
-        if (tweenScript.Rotation.isExecutorEnabled())
-            tweenScript.AnimatedRect.localEulerAngles = tweenScript.Rotation.StartVector;
+        if (tweenScript.rotation.isExecutorEnabled())
+            tweenScript.AnimatedRect.localEulerAngles = tweenScript.rotation.StartVector;
 
-        if (tweenScript.Alpha.isExecutorEnabled())
-            SetAlphaValue(tweenScript.AnimatedRect.transform, tweenScript.Alpha.StartValue);
+        if (tweenScript.alpha.isExecutorEnabled())
+            SetAlphaValue(tweenScript.AnimatedRect.transform, tweenScript.alpha.StartValue);
     }
 
     private void SetFinalProperties()
     {
-        if (tweenScript.Scale.isExecutorEnabled())
-            tweenScript.AnimatedRect.localScale = tweenScript.Scale.EndVector;
+        if (tweenScript.scale.isExecutorEnabled())
+            tweenScript.AnimatedRect.localScale = tweenScript.scale.EndVector;
         
-        if (tweenScript.Position.isExecutorEnabled())
-            tweenScript.AnimatedRect.anchoredPosition = tweenScript.Position.EndVector;
+        if (tweenScript.position.isExecutorEnabled())
+            tweenScript.AnimatedRect.anchoredPosition = tweenScript.position.EndVector;
         
-        if (tweenScript.Rotation.isExecutorEnabled())
-            tweenScript.AnimatedRect.localEulerAngles = tweenScript.Rotation.EndVector;
+        if (tweenScript.rotation.isExecutorEnabled())
+            tweenScript.AnimatedRect.localEulerAngles = tweenScript.rotation.EndVector;
 
-        if (tweenScript.Alpha.isExecutorEnabled())
-            SetAlphaValue(tweenScript.AnimatedRect.transform, tweenScript.Alpha.EndValue);
+        if (tweenScript.alpha.isExecutorEnabled())
+            SetAlphaValue(tweenScript.AnimatedRect.transform, tweenScript.alpha.EndValue);
     }
 
     private void SetAlphaValue(Transform alphaTr, float alphaValue)

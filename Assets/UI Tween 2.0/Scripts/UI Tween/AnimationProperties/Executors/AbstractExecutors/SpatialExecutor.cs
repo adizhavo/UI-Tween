@@ -73,7 +73,7 @@ public abstract class CurveExecutor : SpatialExecutor
 
         if (isExecutorEnabled())
         {
-            float evaluated = EaseProperty.Ease.Evaluate(CoreProperty.ExactPercentage);
+            float evaluated = EaseProperty.Ease.Evaluate(CoreProperty.Percentage);
             Vector3 added = (EaseProperty.FinalPoint - EaseProperty.InitialPoint) * evaluated;
             Vector3 calculatedPoint = EaseProperty.InitialPoint + added;
             ApplyCalculation(animatedRect, calculatedPoint);

@@ -22,6 +22,6 @@ public struct FloatProperty
 
         bool isOpen = !animationCore.IsOpened();
         this.initial = !isOpen ? initial : final;
-        this.final = !isOpen ? initial : final;
+        this.final = !isOpen ? final : initial;
     }
 }

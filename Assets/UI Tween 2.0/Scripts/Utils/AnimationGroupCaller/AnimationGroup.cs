@@ -29,10 +29,10 @@ public class AnimationGroup : MonoBehaviour
     {
         //yield return new WaitForEndOfFrame();
         if (CurrentTriggerOption.Equals(TriggerOptions.ON_START))
-            TriggerAnimations();
+            StartAnimations();
     }
 
-    public void TriggerAnimations()
+    public void StartAnimations()
     {
         if (AnimationCaller.IsIdle())
         {
@@ -41,7 +41,7 @@ public class AnimationGroup : MonoBehaviour
         }
     }
 
-    public void TriggerAnimations(Action callback)
+    public void StartAnimations(Action callback)
     {
         if (AnimationCaller.IsIdle())
         {
@@ -99,5 +99,10 @@ public class AnimationGroup : MonoBehaviour
 
         Group = newAnimList;
         newAnimList = null;
+    }
+
+    public bool isAnimating()
+    {
+        return !AnimationCaller.IsIdle();
     }
 }

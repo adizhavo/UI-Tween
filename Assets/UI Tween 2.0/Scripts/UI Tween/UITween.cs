@@ -20,6 +20,8 @@ public class UITween : MonoBehaviour, IFrameTicker
         get { return animatedRect; }
     }
 
+    #region Properties
+
     public CoreProperty CoreProperty
     {
         set
@@ -57,12 +59,54 @@ public class UITween : MonoBehaviour, IFrameTicker
 
     #endregion
 
-    #region PublicExecutors
+    #region Executors
 
-    public AlphaExecutor Alpha = new AlphaExecutor();
-    public ScaleExecutor Scale = new ScaleExecutor();
-    public PositionExecutor Position = new PositionExecutor();
-    public RotationExecutor Rotation = new RotationExecutor();
+    public AlphaExecutor Alpha
+    {
+        set
+        {
+            if (value != null)
+                alpha = value;
+        }
+        get{ return alpha; }
+    }
+
+    public ScaleExecutor Scale
+    {
+        set
+        {
+            if (value != null)
+                scale = value;
+        }
+        get{ return scale; }
+    }
+
+    public PositionExecutor Position
+    {
+        set
+        {
+            if (value != null)
+                position = value;
+        }
+        get{ return position; }
+    }
+
+    public RotationExecutor Rotation
+    {
+        set
+        {
+            if (value != null)
+                rotation = value;
+        }
+        get{ return rotation; }
+    }
+
+    [SerializeField] [HideInInspector] public AlphaExecutor alpha = new AlphaExecutor();
+    [SerializeField] [HideInInspector] public ScaleExecutor scale = new ScaleExecutor();
+    [SerializeField] [HideInInspector] public PositionExecutor position = new PositionExecutor();
+    [SerializeField] [HideInInspector] public RotationExecutor rotation = new RotationExecutor();
+
+    #endregion
 
     #endregion
 

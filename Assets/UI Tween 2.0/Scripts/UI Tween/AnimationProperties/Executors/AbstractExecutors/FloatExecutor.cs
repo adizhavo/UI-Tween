@@ -9,7 +9,7 @@ public abstract class FloatExecutor : StateExecutor, CorePropertyReader
     {
         set
         {
-            if (value >= 0f && value < 1f)
+            if (value >= 0f && value <= 1f)
                 startValue = value;
         }
         get { return startValue; }
@@ -19,7 +19,7 @@ public abstract class FloatExecutor : StateExecutor, CorePropertyReader
     {
         set
         {
-            if (value > 0f && value <= 1f)
+            if (value >= 0f && value <= 1f)
                 endValue = value;
         }
         get { return endValue; }

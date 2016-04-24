@@ -38,7 +38,7 @@ public class AlphaExecutor : FloatExecutor
 
         MaskableGraphic GraphicElement = alphaTr.GetComponent<MaskableGraphic>();
         Color objectColor = GraphicElement.color;
-        objectColor.a = Mathf.Abs(FloatProperty.Initial + (FloatProperty.Final - FloatProperty.Initial) * CoreProperty.ExactPercentage);
+        objectColor.a = Mathf.Abs(FloatProperty.Initial + (FloatProperty.Final - FloatProperty.Initial) * CoreProperty.Percentage);
         GraphicElement.color = objectColor;
     }
 }
