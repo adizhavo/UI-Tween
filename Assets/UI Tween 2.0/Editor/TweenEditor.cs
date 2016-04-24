@@ -42,10 +42,10 @@ public class TweenEditor : Editor
         RenderAssignmentField();
         RenderAnimationProperty();
         RenderAnimationEndState("GameObject end animation action");
-        RenderAlphaExecutor(tweenScript.alpha, "Start alpha value", "End alpha value", "Override child alpha? ", "Enable Alpha executor");
-        RenderExecutorEditor(tweenScript.position, "Start Position", "End Position", "Enable Position Executor");
-        RenderExecutorEditor(tweenScript.rotation, "Start Rotation", "End Rotation", "Enable Rotation Executor");
-        RenderExecutorEditor(tweenScript.scale, "Start Scale", "End Scale", "Enable Scale Executor");
+        RenderAlphaExecutor(tweenScript.Alpha, "Start alpha value", "End alpha value", "Override child alpha? ", "Enable Alpha executor", "Disable Alpha Executor");
+        RenderExecutorEditor(tweenScript.Position, "Start Position", "End Position", "Enable Position Executor", "Disable Position Executor");
+        RenderExecutorEditor(tweenScript.Rotation, "Start Rotation", "End Rotation", "Enable Rotation Executor", "Disable Rotation Executor");
+        RenderExecutorEditor(tweenScript.Scale, "Start Scale", "End Scale", "Enable Scale Executor", "Disable Scale Executor");
         RenderAnimationButtons();
         RenderCallbackEventProperty();
     }
@@ -84,31 +84,34 @@ public class TweenEditor : Editor
         tweenScript.TimeProperty.Duration = RenderFloatLabel(lenghtMessage, tweenScript.TimeProperty.Duration, 0f, 10f);
     }
 
-    private void RenderAlphaExecutor(AlphaExecutor fadeExecutor, string initialValMessage, string finalValMessage, string overrideChild, string enableMessage)
+    private void RenderAlphaExecutor(AlphaExecutor fadeExecutor, string initialValMessage, string finalValMessage, string overrideChild, string enableMessage, string disableMessage)
     {
         RenderSeparator();
-
+        GUI.color = new Color(0.9f, 1f, 0.9f);
         if (fadeExecutor.isExecutorEnabled())
         {
             fadeExecutor.StartValue = EditorGUILayout.FloatField(initialValMessage, fadeExecutor.StartValue);
             fadeExecutor.EndValue = EditorGUILayout.FloatField(finalValMessage, fadeExecutor.EndValue);
             fadeExecutor.OverrideChilds = EditorGUILayout.Toggle(overrideChild, fadeExecutor.OverrideChilds);
 
-            if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), "Disable Executor"))
+            GUI.color = new Color(1f, 0.7f, 0.7f);
+            if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), disableMessage))
             {
                 fadeExecutor.DisableExecutor();
             }
+            GUI.color = Color.white;
         }
         else if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), enableMessage))
         {
             fadeExecutor.EnableExecutor();
         }
+        GUI.color = Color.white;
     }
 
-    private void RenderExecutorEditor(SpatialExecutor executor, string startMessage, string endMessage, string enableMessage)
+    private void RenderExecutorEditor(SpatialExecutor executor, string startMessage, string endMessage, string enableMessage, string disableMessage)
     {
         RenderSeparator();
-
+        GUI.color = new Color(0.9f, 1f, 0.9f);
         if (executor.isExecutorEnabled())
         {
             string easeinMessage = "EaseIn";
@@ -119,15 +122,18 @@ public class TweenEditor : Editor
             executor.EaseIn = RenderAnimationCurve(easeinMessage, executor.EaseIn);
             executor.EaseOut = RenderAnimationCurve(easeoutMessage, executor.EaseOut);
 
-            if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), "Disable Executor"))
+            GUI.color = new Color(1f, 0.7f, 0.7f);
+            if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), disableMessage))
             {
                 executor.DisableExecutor();
             }
+            GUI.color = Color.white;
         }
         else if (GUI.Button(GUILayoutUtility.GetRect(0.0f, 20.0f, GUILayout.ExpandWidth(true)), enableMessage))
         {
             executor.EnableExecutor();
         }
+        GUI.color = Color.white;
     }
 
     private void RenderAnimationButtons()
@@ -143,29 +149,33 @@ public class TweenEditor : Editor
         EditorGUILayout.BeginVertical();
 
         EditorGUILayout.BeginHorizontal();
-        buttonArea = GUILayoutUtility.GetRect(0.0f, 30.0f, GUILayout.ExpandWidth(true));
+        buttonArea = GUILayoutUtility.GetRect(5.0f, 30.0f, GUILayout.ExpandWidth(true));
+        GUI.color = Color.yellow;
         if (GUI.Button(buttonArea, "Get initial properties"))
         {
             GetInitialProperties();
         }
-        buttonArea = GUILayoutUtility.GetRect(0.0f, 30.0f, GUILayout.ExpandWidth(true));
+        buttonArea = GUILayoutUtility.GetRect(5.0f, 30.0f, GUILayout.ExpandWidth(true));
         if (GUI.Button(buttonArea, "Get final properties"))
         {
             GetFinalProperties();
         }
+        GUI.color = Color.white;
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
-        buttonArea = GUILayoutUtility.GetRect(0.0f, 30.0f, GUILayout.ExpandWidth(true));
+        buttonArea = GUILayoutUtility.GetRect(5.0f, 30.0f, GUILayout.ExpandWidth(true));
+        GUI.color = Color.cyan;
         if (GUI.Button(buttonArea, "Set to initial properties"))
         {
             SetInitialProperties();
         }
-        buttonArea = GUILayoutUtility.GetRect(0.0f, 30.0f, GUILayout.ExpandWidth(true));
+        buttonArea = GUILayoutUtility.GetRect(5.0f, 30.0f, GUILayout.ExpandWidth(true));
         if (GUI.Button(buttonArea, "Set to final properties"))
         {
             SetFinalProperties();
         }
+        GUI.color = Color.white;
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.EndVertical();
