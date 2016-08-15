@@ -27,7 +27,6 @@ public class AnimationGroup : MonoBehaviour
 
     private void Start()
     {
-        //yield return new WaitForEndOfFrame();
         if (CurrentTriggerOption.Equals(TriggerOptions.ON_START))
             StartAnimations();
     }
@@ -50,7 +49,7 @@ public class AnimationGroup : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         AnimationCaller.FrameCall(Group, DelayBetweenCalls, CallWaitAnimationEnd, EndAnimationEvent);
     }
