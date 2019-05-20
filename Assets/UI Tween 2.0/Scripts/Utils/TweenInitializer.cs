@@ -11,7 +11,7 @@ public class TweenInitializer : MonoBehaviour
         END_VALUES
     };
 
-    [SerializeField] private TweenSetupStates CurrentState;
+    [SerializeField] private TweenSetupStates CurrentState = TweenSetupStates.START_VALUES;
     private UITween tweenScript;
 
     private void Awake()

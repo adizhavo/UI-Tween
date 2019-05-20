@@ -15,12 +15,12 @@ public class AnimationGroup : MonoBehaviour
 
     [SerializeField] private TriggerOptions CurrentTriggerOption = TriggerOptions.FROM_CODE;
 
-    [SerializeField] private float DelayBetweenCalls;
-    [SerializeField] private bool CallWaitAnimationEnd;
-    [SerializeField] private bool PreserveExecutionOrder;
+    [SerializeField] private float DelayBetweenCalls = 0;
+    [SerializeField] private bool CallWaitAnimationEnd = false;
+    [SerializeField] private bool PreserveExecutionOrder = false;
 
     [SerializeField] private List<AnimationCall> Group = new List<AnimationCall>();
-    [SerializeField] private UnityEvent EndEvent;
+    [SerializeField] private UnityEvent EndEvent = null;
 
     private Action callback;
     private AnimationGroupCaller AnimationCaller = new AnimationGroupCaller();
