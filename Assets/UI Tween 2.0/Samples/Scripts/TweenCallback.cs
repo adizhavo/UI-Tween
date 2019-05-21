@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TweenCallback : Callback {
 
-    [SerializeField] private UITween tweenListen;
-    [SerializeField] private AnimationGroup groupCall;
+    [SerializeField] private UITween tweenListen = null;
+    [SerializeField] private AnimationGroup groupCall = null;
 
     private void Awake()
     {

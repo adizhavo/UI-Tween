@@ -2,8 +2,8 @@
 
 public class DisableGameObjectCallback : Callback 
 {
-    [SerializeField] private UITween tweenListen;
-    [SerializeField] private GameObject DisableGameObject;
+    [SerializeField] private UITween tweenListen = null;
+    [SerializeField] private GameObject DisableGameObject = null;
 
     private void Awake()
     {

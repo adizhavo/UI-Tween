@@ -14,12 +14,6 @@ public struct FloatProperty
 
     public FloatProperty(float initial, float final, CoreProperty animationCore)
     {
-        if (animationCore == null)
-        {
-            Debug.LogWarning("CoreProperty is null, nothing will be apllied");
-            return;
-        }
-
         bool isOpen = !animationCore.IsOpened();
         this.initial = !isOpen ? initial : final;
         this.final = !isOpen ? final : initial;

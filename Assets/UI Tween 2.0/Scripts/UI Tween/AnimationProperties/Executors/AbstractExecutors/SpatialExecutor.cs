@@ -49,6 +49,11 @@ public abstract class SpatialExecutor : StateExecutor, CorePropertyReader
             Debug.LogWarning("You Inserted a null CoreProperty! Property not correctly initialized");
             return;
         }
+        if (easeIn == null || easeOut == null)
+        {
+            Debug.LogWarning("EasinIn or EaseOut are null, please check your request.");
+            return;
+        }
 
         easeProperty = new EaseProperty(StartVector, EndVector, easeIn, easeOut, coreProperty);
         this.coreProperty = coreProperty;
